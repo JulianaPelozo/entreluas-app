@@ -11,8 +11,9 @@ function Diario() {
 
   async function carregarEntradas() {
     try {
+      const token = localStorage.getItem('token');
       const res = await api.get('/diario', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${token}` }
       });
       setEntradas(res.data);
     } catch (err) {
@@ -23,8 +24,9 @@ function Diario() {
   async function criarEntrada() {
     if (!novaEntrada.conteudo) return alert('Conteúdo obrigatório');
     try {
+      const token = localStorage.getItem('token');
       await api.post('/diario', novaEntrada, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${token}` }
       });
       setNovaEntrada({ titulo: '', conteudo: '', humor: '' });
       carregarEntradas();
@@ -34,9 +36,10 @@ function Diario() {
   }
 
   return (
-    <div className="container">
-      <h1>📓 Diário Espiritual</h1>
-      <div style={{ marginBottom: '2rem', background: '#0f3460', padding: '1rem', borderRadius: '8px' }}>
+    <div>
+      <h2>📓 Diário Espiritual</h2>
+      {/* Formulário em card */}
+      <div className="card" style={{ marginBottom: '2rem' }}>
         <h3>Nova entrada</h3>
         <input
           type="text"
@@ -61,14 +64,20 @@ function Diario() {
         />
         <button onClick={criarEntrada}>Salvar</button>
       </div>
-      <h2>Entradas anteriores</h2>
-      {entradas.map(e => (
-        <div key={e.id} style={{ borderBottom: '1px solid #e94560', marginBottom: '1rem' }}>
-          <h3>{e.titulo || 'Sem título'}</h3>
-          <p>{e.conteudo}</p>
-          <small>{new Date(e.data_criacao).toLocaleString('pt-BR')} - Humor: {e.humor || '-'}</small>
-        </div>
-      ))}
+
+      <h3>Entradas anteriores</h3>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {entradas.map(e => (
+          <div key={e.id} className="card">
+            <h3>{e.titulo || 'Sem título'}</h3>
+            <p>{e.conteudo}</p>
+            <div className="meta">
+              {new Date(e.data_criacao).toLocaleString('pt-BR')} – Humor: {e.humor || '-'}
+            </div>
+          </div>
+        ))}
+        {entradas.length === 0 && <p>Nenhuma entrada ainda. Escreva algo!</p>}
+      </div>
     </div>
   );
 }

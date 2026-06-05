@@ -29,23 +29,23 @@ function RodaAno() {
   }
 
   return (
-    <div className="container">
-      <h1>🌿 Roda do Ano</h1>
+    <div>
+      <h2>🌿 Roda do Ano</h2>
       {proximo && (
-        <div style={{ background: '#0f3460', padding: '1rem', borderRadius: '10px', marginBottom: '2rem' }}>
+        <div className="card" style={{ marginBottom: '2rem', background: 'rgba(233, 69, 96, 0.2)' }}>
           <h3>📅 Próximo Sabbat: {proximo.nome_sabbat}</h3>
-          <p>Início: {new Date(proximo.data_inicio).toLocaleDateString('pt-BR')}</p>
+          <p><strong>Início:</strong> {new Date(proximo.data_inicio).toLocaleDateString('pt-BR')}</p>
           <p>{proximo.descricao}</p>
+          <small>Elemento: {proximo.elemento} | Cor: {proximo.cor_associada}</small>
         </div>
       )}
-      <h2>Todos os Sabbats</h2>
-      <div style={{ display: 'grid', gap: '1rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
         {sabbats.map(s => (
-          <div key={s.id} style={{ border: '1px solid #e94560', padding: '1rem', borderRadius: '8px' }}>
+          <div key={s.id} className="card">
             <h3>{s.nome_sabbat}</h3>
             <p><strong>Data:</strong> {new Date(s.data_inicio).toLocaleDateString('pt-BR')}</p>
             <p>{s.descricao}</p>
-            <small>Elemento: {s.elemento} | Cor: {s.cor_associada}</small>
+            <div className="meta">🔥 Elemento: {s.elemento} | 🎨 Cor: {s.cor_associada}</div>
           </div>
         ))}
       </div>

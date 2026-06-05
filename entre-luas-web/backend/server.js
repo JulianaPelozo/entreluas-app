@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rotas
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/roda-ano', require('./routes/roda-ano'));
 app.use('/api/fases-lua', require('./routes/fases-lua'));
