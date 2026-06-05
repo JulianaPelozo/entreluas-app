@@ -1,0 +1,83 @@
+# --- Configurações de ambiente ---
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+
+# --- Backend (Node.js) ---
+backend/node_modules/
+backend/package-lock.json
+backend/yarn.lock
+backend/logs/
+backend/*.log
+backend/.DS_Store
+backend/dist/
+backend/build/
+
+# --- Frontend (React / React Native) ---
+frontend/node_modules/
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/build/
+frontend/.env.production
+frontend/.env.development
+frontend/.expo/
+frontend/web-build/
+frontend/.expo-shared/
+
+# --- Arquivos de IDE / editores ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.bs.js
+.DS_Store
+
+# --- Banco de dados local (dumps / arquivos temporários) ---
+*.sql
+*.dump
+*.db
+*.sqlite
+mysql-data/
+backup-*.sql
+*.mwb   # MySQL Workbench model
+*.mwb.bak
+
+# --- Logs e relatórios de teste ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+coverage/
+.nyc_output/
+
+# --- Runtime / sistema ---
+*.pid
+*.seed
+*.pid.lock
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Arquivos de empacotamento ---
+*.tgz
+*.tar.gz
+*.zip
+
+# --- Ignorar arquivos gerados pelo React Native (expo) ---
+.expo/
+expo-env.js
+__generated__/
+
+# --- Ignorar cache de ferramentas ---
+.cache/
+.parcel-cache/
+.eslintcache
+.vercel
+.netlify
